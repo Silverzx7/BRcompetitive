@@ -8,7 +8,7 @@
         :root {
             --bg: #0d0d0d;
             --card-bg: #161616;
-            --accent: #0070f3; /* Azul profissional */
+            --accent: #00ff41; /* VERDE APARELHO / NEON */
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
             --border: #262626;
@@ -23,7 +23,7 @@
             line-height: 1.5;
         }
 
-        /* Navbar Lateral ou Topo Clean */
+        /* Navbar */
         nav {
             padding: 20px 5%;
             display: flex;
@@ -34,10 +34,11 @@
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
+            z-index: 100;
         }
 
         .logo { font-weight: 900; letter-spacing: 1px; font-size: 1.2rem; }
-        .region-tag { background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; }
+        .region-tag { border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
 
         .container {
             max-width: 1100px;
@@ -58,39 +59,60 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 24px;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: all 0.3s ease;
         }
 
         .tourney-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 65, 0.05);
         }
 
         .tourney-type { color: var(--accent); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
         .tourney-title { font-size: 1.4rem; margin: 10px 0; font-weight: 700; }
         .tourney-info { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; }
 
+        /* Badge AO VIVO */
         .status-badge {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
-            color: #00ff41; /* Verde para Live */
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        .dot { width: 8px; height: 8px; background: #00ff41; border-radius: 50%; box-shadow: 0 0 10px #00ff41; }
+        .dot { 
+            width: 8px; 
+            height: 8px; 
+            background: var(--accent); 
+            border-radius: 50%; 
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
         .view-button {
             display: block;
             text-align: center;
-            background: var(--text-main);
+            background: var(--accent);
             color: black;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 12px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 0.9rem;
             margin-top: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .view-button:hover {
+            opacity: 0.9;
         }
 
         h2 { font-size: 1.8rem; margin-bottom: 10px; }
@@ -105,32 +127,24 @@
 
     <div class="container">
         <h2>Campeonatos Ativos</h2>
-        <p style="color: var(--text-dim)">Acompanhe o progresso dos pros brasileiros.</p>
+        <p style="color: var(--text-dim)">Os torneios mais importantes do servidor brasileiro.</p>
 
         <div class="tourney-grid">
             
             <div class="tourney-card">
                 <span class="tourney-type">Major 2</span>
                 <div class="tourney-title">FNCS Grand Finals</div>
-                <div class="tourney-info">A maior competição do Brasil. $200k+ em prêmios.</div>
+                <div class="tourney-info">O maior palco do Brasil. Acompanhe os melhores pro-players.</div>
                 <div class="status-badge"><div class="dot"></div> AO VIVO AGORA</div>
-                <a href="#" class="view-button">Ver Leaderboard</a>
+                <a href="#" class="view-button">VER LEADERBOARD</a>
             </div>
 
             <div class="tourney-card">
                 <span class="tourney-type">Solo Cup</span>
                 <div class="tourney-title">Victory Cash Cup</div>
-                <div class="tourney-info">Finais de Domingo. Buscando o topo da tabela.</div>
-                <div style="color: var(--text-dim); font-size: 0.85rem;">Inicia em 2h 15m</div>
-                <a href="#" class="view-button" style="background:#222; color:white;">Notificar-me</a>
-            </div>
-
-            <div class="tourney-card">
-                <span class="tourney-type">Duo Cup</span>
-                <div class="tourney-title">Duo Cash Cup</div>
-                <div class="tourney-info">As melhores duplas do servidor BR em ação.</div>
-                <div style="color: var(--text-dim); font-size: 0.85rem;">Finalizado (Round 2)</div>
-                <a href="#" class="view-button" style="background:#222; color:white;">Ver Resultados</a>
+                <div class="tourney-info">Quem garantirá a vitória épica hoje?</div>
+                <div style="color: var(--text-dim); font-size: 0.85rem;">Próximo: Domingo, 18:00</div>
+                <a href="#" class="view-button" style="background:#222; color:white;">VER INFO</a>
             </div>
 
         </div>
