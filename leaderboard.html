@@ -10,6 +10,7 @@
             --accent: #00ff41; 
             --card-bg: #161616; 
             --border: #262626; 
+            --gold: #ffd700;
         }
         body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
         nav { padding: 15px 5%; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #000; position: sticky; top: 0; z-index: 100;}
@@ -17,7 +18,7 @@
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
 
         /* ABAS */
-        .tabs-container { display: flex; gap: 10px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 10px; }
+        .tabs-container { display: flex; gap: 10px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
         .tab-btn {
             background: #1a1a1a; border: 1px solid var(--border); color: #888;
             padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 800;
@@ -32,9 +33,12 @@
         table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
         th { background: #222; padding: 15px; text-align: left; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; }
         td { padding: 12px 15px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        
         .rank { font-weight: bold; color: var(--accent); width: 40px; }
         .duo-name { font-weight: 800; text-transform: uppercase; }
         .pts { text-align: right; font-weight: bold; font-family: monospace; }
+        .badge-winner { background: var(--gold); color: black; padding: 2px 6px; border-radius: 4px; font-size: 0.6rem; margin-left: 10px; vertical-align: middle; }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -48,9 +52,10 @@
     <div class="container">
         <div class="tabs-container">
             <button class="tab-btn active" onclick="openTab(event, 'finals')">Grand Finals</button>
-            <button class="tab-btn" onclick="openTab(event, 'major1')">Major 1</button>
-            <button class="tab-btn" onclick="openTab(event, 'heats')">Heats</button>
+            <button class="tab-btn" onclick="openTab(event, 'heata')">Heat A</button>
+            <button class="tab-btn" onclick="openTab(event, 'heatb')">Heat B</button>
             <button class="tab-btn" onclick="openTab(event, 'lastchance')">Last Chance</button>
+            <button class="tab-btn" onclick="openTab(event, 'major1')">Major 1</button>
         </div>
 
         <div id="finals" class="tab-content active">
@@ -111,17 +116,48 @@
             </table>
         </div>
 
+        <div id="heata" class="tab-content">
+            <table>
+                <thead><tr><th class="rank">#</th><th>DUPLA (HEAT A)</th><th class="pts">PTS</th></tr></thead>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">King & Phzin <span class="badge-winner">WINNER</span></td><td class="pts">280</td></tr>
+                    <tr><td class="rank">2</td><td class="duo-name">Vadeyy & Sirence</td><td class="pts">245</td></tr>
+                    <tr><td class="rank">3</td><td class="duo-name">Fazer & K1ng</td><td class="pts">210</td></tr>
+                    <tr><td class="rank">4</td><td class="duo-name">Seawave & Felpsz</td><td class="pts">195</td></tr>
+                    <tr><td class="rank">5</td><td class="duo-name">Frostyache & Matika</td><td class="pts">180</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="heatb" class="tab-content">
+            <table>
+                <thead><tr><th class="rank">#</th><th>DUPLA (HEAT B)</th><th class="pts">PTS</th></tr></thead>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">Persa & Diguera <span class="badge-winner">WINNER</span></td><td class="pts">295</td></tr>
+                    <tr><td class="rank">2</td><td class="duo-name">Edroad & Cadu</td><td class="pts">230</td></tr>
+                    <tr><td class="rank">3</td><td class="duo-name">Rodrygod & Keicox</td><td class="pts">215</td></tr>
+                    <tr><td class="rank">4</td><td class="duo-name">Kitoz & Hazzense</td><td class="pts">200</td></tr>
+                    <tr><td class="rank">5</td><td class="duo-name">Kayky & Kchorro</td><td class="pts">185</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="lastchance" class="tab-content">
+            <table>
+                <thead><tr><th class="rank">#</th><th>DUPLA (LAST CHANCE)</th><th class="pts">PTS</th></tr></thead>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">Vinizin & Pietro</td><td class="pts">150</td></tr>
+                </tbody>
+            </table>
+        </div>
+
         <div id="major1" class="tab-content">
             <table>
                 <thead><tr><th class="rank">#</th><th>DUPLA (MAJOR 1)</th><th class="pts">PTS</th></tr></thead>
-                <tbody><tr><td class="rank">1</td><td class="duo-name">King & Phzin</td><td class="pts">520</td></tr></tbody>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">Persa & Diguera</td><td class="pts">580</td></tr>
+                </tbody>
             </table>
-        </div>
-        <div id="heats" class="tab-content">
-            <p style="text-align:center; padding:20px; color:#666;">Resultados dos Heats em breve...</p>
-        </div>
-        <div id="lastchance" class="tab-content">
-            <p style="text-align:center; padding:20px; color:#666;">Resultados da Last Chance em breve...</p>
         </div>
 
     </div>
