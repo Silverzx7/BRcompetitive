@@ -17,10 +17,9 @@
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.5;
         }
 
         nav {
@@ -36,63 +35,49 @@
             z-index: 100;
         }
 
-        .logo { font-weight: 900; letter-spacing: 1px; font-size: 1.2rem; }
-        .region-tag { border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
-
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        .logo { font-weight: 900; font-size: 1.2rem; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
 
         .tourney-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-top: 30px;
         }
 
         .tourney-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
+            border-radius: 16px;
+            overflow: hidden; /* Para a imagem não sair da borda arredondada */
             transition: all 0.3s ease;
         }
 
         .tourney-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 255, 65, 0.05);
+        }
+
+        /* ESTILO DA FOTO/BANNER */
+        .tourney-banner {
+            width: 100%;
+            height: 180px;
+            background-image: url('https://pbs.twimg.com/media/GH8Tq52X0AA5l8A?format=jpg&name=large'); /* Link da imagem da FNCS */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 20px;
         }
 
         .tourney-type { color: var(--accent); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
         .tourney-title { font-size: 1.4rem; margin: 10px 0; font-weight: 700; }
-        .tourney-info { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; }
+        
+        .status-badge { display: flex; align-items: center; gap: 8px; color: var(--accent); font-weight: bold; font-size: 0.85rem; }
+        .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 1.5s infinite; }
 
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .dot { 
-            width: 8px; 
-            height: 8px; 
-            background: var(--accent); 
-            border-radius: 50%; 
-            box-shadow: 0 0 10px var(--accent);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         .view-button {
             display: block;
@@ -103,40 +88,29 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 900;
-            font-size: 0.9rem;
-            margin-top: 15px;
+            margin-top: 20px;
         }
-
-        h2 { font-size: 1.8rem; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">BR<span style="color:var(--accent)">COMPETITIVE</span></div>
-        <div class="region-tag">BRASIL (BR)</div>
+        <div style="border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem;">BRASIL</div>
     </nav>
 
     <div class="container">
         <h2>Campeonatos Ativos</h2>
-        <p style="color: var(--text-dim)">Os torneios mais importantes do servidor brasileiro.</p>
-
+        
         <div class="tourney-grid">
             
             <div class="tourney-card">
-                <span class="tourney-type">Major 2</span>
-                <div class="tourney-title">FNCS Grand Finals</div>
-                <div class="tourney-info">Acompanha os melhores pro-players do Brasil em direto.</div>
-                <div class="status-badge"><div class="dot"></div> AO VIVO AGORA</div>
-                <a href="leaderboard.html" class="view-button">VER LEADERBOARD</a>
-            </div>
-
-            <div class="tourney-card">
-                <span class="tourney-type">Solo Cup</span>
-                <div class="tourney-title">Victory Cash Cup</div>
-                <div class="tourney-info">Quem garantirá a vitória épica hoje?</div>
-                <div style="color: var(--text-dim); font-size: 0.85rem;">Próximo: Domingo, 18:00</div>
-                <a href="#" class="view-button" style="background:#222; color:white;">VER INFO</a>
+                <div class="tourney-banner"></div> <div class="card-content">
+                    <span class="tourney-type">Major 2</span>
+                    <div class="tourney-title">FNCS Grand Finals</div>
+                    <div class="status-badge"><div class="dot"></div> AO VIVO AGORA</div>
+                    <a href="leaderboard.html" class="view-button">VER LEADERBOARD</a>
+                </div>
             </div>
 
         </div>
