@@ -10,127 +10,129 @@
             --accent: #00ff41; 
             --card-bg: #161616; 
             --border: #262626; 
-            --gold: #ffd700;
-            --silver: #c0c0c0;
-            --bronze: #cd7f32;
         }
         body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
-        nav { padding: 15px 5%; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;}
-        .back-btn { color: var(--accent); text-decoration: none; font-weight: bold; }
         
-        .container { max-width: 950px; margin: 40px auto; padding: 0 20px; }
-        
-        /* Cabeçalho do Campeonato */
-        .camp-header {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-        .camp-title { font-size: 1.5rem; font-weight: 900; margin: 0; }
-        .camp-details { display: flex; gap: 30px; margin-top: 15px; color: #888; font-size: 0.8rem; }
+        nav { padding: 15px 5%; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #000; position: sticky; top: 0; z-index: 100;}
+        .back-btn { color: var(--accent); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
 
-        /* Tabela */
-        table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-        th { background: #222; padding: 15px; text-align: left; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
-        td { padding: 15px; border-bottom: 1px solid var(--border); }
-        
-        .rank { font-weight: bold; color: var(--accent); width: 40px; font-size: 1.1rem; }
-        .duo-name { font-weight: 800; font-size: 1rem; text-transform: uppercase; display: block; }
-        
-        /* Badges de Histórico (Major 1, Heats, Last Chance) */
-        .history { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-        .badge {
-            font-size: 0.6rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 900;
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+
+        /* SISTEMA DE ABAS (TABS) */
+        .tabs-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        .tab-btn {
+            background: #1a1a1a;
+            border: 1px solid var(--border);
+            color: #888;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            transition: 0.2s;
             text-transform: uppercase;
         }
-        .b-last-chance { background: #ff004c; color: white; } /* Cor vibrante para Last Chance */
-        .b-major { background: var(--accent); color: black; }
-        .b-heat { background: #333; color: #ccc; border: 1px solid #444; }
-        .b-gold { background: var(--gold); color: black; }
+        .tab-btn.active {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+        }
+        .tab-btn:hover:not(.active) {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
 
-        .prize { text-align: right; font-weight: bold; color: var(--accent); font-family: monospace; }
+        /* TABELA */
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+
+        table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+        th { background: #222; padding: 15px; text-align: left; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; }
+        td { padding: 15px; border-bottom: 1px solid var(--border); }
+        
+        .rank { font-weight: bold; color: var(--accent); width: 40px; }
+        .duo-name { font-weight: 800; text-transform: uppercase; }
+        .pts { text-align: right; font-weight: bold; font-family: monospace; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
+
     <nav>
         <div style="font-weight:900">BR<span style="color:var(--accent)">COMPETITIVE</span></div>
         <a href="index.html" class="back-btn">← VOLTAR</a>
     </nav>
     
     <div class="container">
-        <div class="camp-header">
-            <span style="color: var(--accent); font-weight: bold; font-size: 0.8rem;">CH7 S2 - ATIVO</span>
-            <h2 class="camp-title">FNCS GRAND FINALS</h2>
-            <div class="camp-details">
-                <div><span>PREMIAÇÃO:</span> <strong style="color:white">$592K</strong></div>
-                <div><span>REGION:</span> <strong style="color:white">BRAZIL</strong></div>
-            </div>
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="openTab(event, 'finals')">Grand Finals</button>
+            <button class="tab-btn" onclick="openTab(event, 'major1')">Major 1</button>
+            <button class="tab-btn" onclick="openTab(event, 'heats')">Heats A & B</button>
+            <button class="tab-btn" onclick="openTab(event, 'lastchance')">Last Chance</button>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="rank">#</th>
-                    <th>DUPLA E RESULTADOS RECENTES</th>
-                    <th style="text-align: right;">PONTOS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="rank">1</td>
-                    <td>
-                        <span class="duo-name">King & Phzin</span>
-                        <div class="history">
-                            <span class="badge b-gold">🥇 TOP 1 MAJOR 1</span>
-                            <span class="badge b-heat">HEAT A: TOP 1</span>
-                        </div>
-                    </td>
-                    <td class="prize">0</td>
-                </tr>
+        <div id="finals" class="tab-content active">
+            <table>
+                <thead><tr><th class="rank">#</th><th>DUPLA (GRAND FINALS)</th><th class="pts">PTS</th></tr></thead>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">King & Phzin</td><td class="pts">0</td></tr>
+                    <tr><td class="rank">2</td><td class="duo-name">Persa & Diguera</td><td class="pts">0</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-                <tr>
-                    <td class="rank">2</td>
-                    <td>
-                        <span class="duo-name">Persa & Diguera</span>
-                        <div class="history">
-                            <span class="badge b-major">TOP 2 MAJOR 1</span>
-                            <span class="badge b-heat">HEAT B: TOP 1</span>
-                        </div>
-                    </td>
-                    <td class="prize">0</td>
-                </tr>
+        <div id="major1" class="tab-content">
+            <table>
+                <thead><tr><th class="rank">#</th><th>DUPLA (MAJOR 1)</th><th class="pts">PTS</th></tr></thead>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">Persa & Diguera</td><td class="pts">450</td></tr>
+                    <tr><td class="rank">2</td><td class="duo-name">King & Phzin</td><td class="pts">420</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-                <tr>
-                    <td class="rank">3</td>
-                    <td>
-                        <span class="duo-name">Vadeyy & Sirence</span>
-                        <div class="history">
-                            <span class="badge b-last-chance">TOP 1 LAST CHANCE</span>
-                            <span class="badge b-heat">HEAT A: TOP 5</span>
-                        </div>
-                    </td>
-                    <td class="prize">0</td>
-                </tr>
+        <div id="heats" class="tab-content">
+            <table>
+                <thead><tr><th class="rank">#</th><th>DUPLA (HEATS)</th><th class="pts">PTS</th></tr></thead>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">Fazer & K1ng</td><td class="pts">180</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-                <tr>
-                    <td class="rank">4</td>
-                    <td>
-                        <span class="duo-name">Seawave & Felpsz</span>
-                        <div class="history">
-                            <span class="badge b-major">TOP 5 MAJOR 1</span>
-                            <span class="badge b-last-chance">QUALIFIED LAST CHANCE</span>
-                        </div>
-                    </td>
-                    <td class="prize">0</td>
-                </tr>
-
-            </tbody>
-        </table>
+        <div id="lastchance" class="tab-content">
+            <table>
+                <thead><tr><th class="rank">#</th><th>DUPLA (LAST CHANCE)</th><th class="pts">PTS</th></tr></thead>
+                <tbody>
+                    <tr><td class="rank">1</td><td class="duo-name">Vadeyy & Sirence</td><td class="pts">210</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
 </body>
 </html>
