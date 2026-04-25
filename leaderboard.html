@@ -3,89 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard Completa | BR Competitive</title>
+    <title>Leaderboard | BR Competitive</title>
     <style>
-        :root { --bg: #0d0d0d; --accent: #00ff41; --card-bg: #161616; --border: #262626; }
+        :root { 
+            --bg: #0d0d0d; 
+            --accent: #00ff41; 
+            --card-bg: #161616; 
+            --border: #262626; 
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --bronze: #cd7f32;
+        }
         body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
         nav { padding: 15px 5%; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;}
         .back-btn { color: var(--accent); text-decoration: none; font-weight: bold; }
-        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        h1 { color: var(--accent); border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 30px; font-size: 1.8rem; }
-        table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 50px; }
-        th { background: #222; padding: 15px; text-align: left; color: var(--accent); font-size: 0.75rem; text-transform: uppercase; }
-        td { padding: 12px 15px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-        tr:hover { background: #1a1a1a; }
-        .rank { font-weight: bold; color: var(--accent); width: 40px; }
-        .pts { text-align: right; font-weight: bold; color: var(--accent); }
+        
+        .container { max-width: 950px; margin: 40px auto; padding: 0 20px; }
+        
+        /* Cabeçalho do Campeonato */
+        .camp-header {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .camp-title { font-size: 1.5rem; font-weight: 900; margin: 0; }
+        .camp-details { display: flex; gap: 30px; margin-top: 15px; color: #888; font-size: 0.8rem; }
+
+        /* Tabela */
+        table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+        th { background: #222; padding: 15px; text-align: left; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        td { padding: 15px; border-bottom: 1px solid var(--border); }
+        
+        .rank { font-weight: bold; color: var(--accent); width: 40px; font-size: 1.1rem; }
+        .duo-name { font-weight: 800; font-size: 1rem; text-transform: uppercase; display: block; }
+        
+        /* Badges de Histórico (Major 1, Heats, Last Chance) */
+        .history { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .badge {
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .b-last-chance { background: #ff004c; color: white; } /* Cor vibrante para Last Chance */
+        .b-major { background: var(--accent); color: black; }
+        .b-heat { background: #333; color: #ccc; border: 1px solid #444; }
+        .b-gold { background: var(--gold); color: black; }
+
+        .prize { text-align: right; font-weight: bold; color: var(--accent); font-family: monospace; }
     </style>
 </head>
 <body>
     <nav>
         <div style="font-weight:900">BR<span style="color:var(--accent)">COMPETITIVE</span></div>
-        <a href="index.html" class="back-btn">← Voltar</a>
+        <a href="index.html" class="back-btn">← VOLTAR</a>
     </nav>
     
     <div class="container">
-        <h1>FNCS GRAND FINALS - LEADERBOARD (0/50)</h1>
+        <div class="camp-header">
+            <span style="color: var(--accent); font-weight: bold; font-size: 0.8rem;">CH7 S2 - ATIVO</span>
+            <h2 class="camp-title">FNCS GRAND FINALS</h2>
+            <div class="camp-details">
+                <div><span>PREMIAÇÃO:</span> <strong style="color:white">$592K</strong></div>
+                <div><span>REGION:</span> <strong style="color:white">BRAZIL</strong></div>
+            </div>
+        </div>
+
         <table>
             <thead>
                 <tr>
                     <th class="rank">#</th>
-                    <th>DUPLA</th>
-                    <th class="pts">PTS</th>
+                    <th>DUPLA E RESULTADOS RECENTES</th>
+                    <th style="text-align: right;">PONTOS</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td class="rank">1</td><td>edson & Phzin</td><td class="pts">0</td></tr>
-                <tr><td class="rank">2</td><td>Persa & Diguera</td><td class="pts">0</td></tr>
-                <tr><td class="rank">3</td><td>Vadeyy & Sirence</td><td class="pts">0</td></tr>
-                <tr><td class="rank">4</td><td>Seawave & Felpsz</td><td class="pts">0</td></tr>
-                <tr><td class="rank">5</td><td>Fazer & K1ng</td><td class="pts">0</td></tr>
-                <tr><td class="rank">6</td><td>Frostyache & Matika</td><td class="pts">0</td></tr>
-                <tr><td class="rank">7</td><td>Rodrygod & Keicox</td><td class="pts">0</td></tr>
-                <tr><td class="rank">8</td><td>Kitoz & Hazzense</td><td class="pts">0</td></tr>
-                <tr><td class="rank">9</td><td>Kayky & Kchorro</td><td class="pts">0</td></tr>
-                <tr><td class="rank">10</td><td>Edroad & Cadu</td><td class="pts">0</td></tr>
-                <tr><td class="rank">11</td><td>Furia Night & Gon</td><td class="pts">0</td></tr>
-                <tr><td class="rank">12</td><td>Letz & Frans</td><td class="pts">0</td></tr>
-                <tr><td class="rank">13</td><td>Thefeloz & Jxness</td><td class="pts">0</td></tr>
-                <tr><td class="rank">14</td><td>Parkyn & Clown</td><td class="pts">0</td></tr>
-                <tr><td class="rank">15</td><td>Loud Diguera & Mack</td><td class="pts">0</td></tr>
-                <tr><td class="rank">16</td><td>Gutinho & Zuin</td><td class="pts">0</td></tr>
-                <tr><td class="rank">17</td><td>Paulinyache & Jpfk1ng</td><td class="pts">0</td></tr>
-                <tr><td class="rank">18</td><td>Nahux & Gonzalito</td><td class="pts">0</td></tr>
-                <tr><td class="rank">19</td><td>Lynox & Arthurbc</td><td class="pts">0</td></tr>
-                <tr><td class="rank">20</td><td>Dutra & Ysad</td><td class="pts">0</td></tr>
-                <tr><td class="rank">21</td><td>Chacal & Bahiense</td><td class="pts">0</td></tr>
-                <tr><td class="rank">22</td><td>KBR & Azizis</td><td class="pts">0</td></tr>
-                <tr><td class="rank">23</td><td>Yzan & Texz</td><td class="pts">0</td></tr>
-                <tr><td class="rank">24</td><td>Slw & Opai</td><td class="pts">0</td></tr>
-                <tr><td class="rank">25</td><td>Felippersa & Pingu</td><td class="pts">0</td></tr>
-                <tr><td class="rank">26</td><td>AWT & Guizera</td><td class="pts">0</td></tr>
-                <tr><td class="rank">27</td><td>Alejo & Tatinocho</td><td class="pts">0</td></tr>
-                <tr><td class="rank">28</td><td>Wolfie & Trueno</td><td class="pts">0</td></tr>
-                <tr><td class="rank">29</td><td>Fxbinzrr & Venly</td><td class="pts">0</td></tr>
-                <tr><td class="rank">30</td><td>Sanku & Fishy</td><td class="pts">0</td></tr>
-                <tr><td class="rank">31</td><td>Lucx & Mxsty</td><td class="pts">0</td></tr>
-                <tr><td class="rank">32</td><td>Steg & Covrezin</td><td class="pts">0</td></tr>
-                <tr><td class="rank">33</td><td>Randu & Venly Grx</td><td class="pts">0</td></tr>
-                <tr><td class="rank">34</td><td>MV & Seven</td><td class="pts">0</td></tr>
-                <tr><td class="rank">35</td><td>Tech & Venly Nicobuca</td><td class="pts">0</td></tr>
-                <tr><td class="rank">36</td><td>Cauee & Kadu</td><td class="pts">0</td></tr>
-                <tr><td class="rank">37</td><td>Gabzera & Nuti</td><td class="pts">0</td></tr>
-                <tr><td class="rank">38</td><td>Romero & Lewa</td><td class="pts">0</td></tr>
-                <tr><td class="rank">39</td><td>Keex & Venly Joey</td><td class="pts">0</td></tr>
-                <tr><td class="rank">40</td><td>Xeat & Scarpa</td><td class="pts">0</td></tr>
-                <tr><td class="rank">41</td><td>Vix & Benjy</td><td class="pts">0</td></tr>
-                <tr><td class="rank">42</td><td>Vinizin & Pietro</td><td class="pts">0</td></tr>
-                <tr><td class="rank">43</td><td>Tecne & Thiagin</td><td class="pts">0</td></tr>
-                <tr><td class="rank">44</td><td>Lezin & Blazerd</td><td class="pts">0</td></tr>
-                <tr><td class="rank">45</td><td>Nickzrr & Tisco</td><td class="pts">0</td></tr>
-                <tr><td class="rank">46</td><td>Vazzyk & Valinsky</td><td class="pts">0</td></tr>
-                <tr><td class="rank">47</td><td>Fluxo W7M Teuzz & Kingbr</td><td class="pts">0</td></tr>
-                <tr><td class="rank">48</td><td>Venly White & Spectral</td><td class="pts">0</td></tr>
-                <tr><td class="rank">49</td><td>Pedrin & Carlin</td><td class="pts">0</td></tr>
-                <tr><td class="rank">50</td><td>Pardal & Seeyun</td><td class="pts">0</td></tr>
+                <tr>
+                    <td class="rank">1</td>
+                    <td>
+                        <span class="duo-name">King & Phzin</span>
+                        <div class="history">
+                            <span class="badge b-gold">🥇 TOP 1 MAJOR 1</span>
+                            <span class="badge b-heat">HEAT A: TOP 1</span>
+                        </div>
+                    </td>
+                    <td class="prize">0</td>
+                </tr>
+
+                <tr>
+                    <td class="rank">2</td>
+                    <td>
+                        <span class="duo-name">Persa & Diguera</span>
+                        <div class="history">
+                            <span class="badge b-major">TOP 2 MAJOR 1</span>
+                            <span class="badge b-heat">HEAT B: TOP 1</span>
+                        </div>
+                    </td>
+                    <td class="prize">0</td>
+                </tr>
+
+                <tr>
+                    <td class="rank">3</td>
+                    <td>
+                        <span class="duo-name">Vadeyy & Sirence</span>
+                        <div class="history">
+                            <span class="badge b-last-chance">TOP 1 LAST CHANCE</span>
+                            <span class="badge b-heat">HEAT A: TOP 5</span>
+                        </div>
+                    </td>
+                    <td class="prize">0</td>
+                </tr>
+
+                <tr>
+                    <td class="rank">4</td>
+                    <td>
+                        <span class="duo-name">Seawave & Felpsz</span>
+                        <div class="history">
+                            <span class="badge b-major">TOP 5 MAJOR 1</span>
+                            <span class="badge b-last-chance">QUALIFIED LAST CHANCE</span>
+                        </div>
+                    </td>
+                    <td class="prize">0</td>
+                </tr>
+
             </tbody>
         </table>
     </div>
