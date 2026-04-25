@@ -5,24 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drop Spots | BR Competitive</title>
     <style>
-        :root { --bg: #0d0d0d; --accent: #00ff41; --border: #262626; }
-        body { background: var(--bg); color: white; font-family: sans-serif; margin: 0; text-align: center; }
-        nav { padding: 15px 5%; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        :root { 
+            --bg: #0d0d0d; 
+            --accent: #00ff41; 
+            --border: #262626; 
+        }
+        body { 
+            background: var(--bg); 
+            color: white; 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            text-align: center; 
+        }
+        nav { 
+            padding: 15px 5%; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: #000; 
+        }
         .back-btn { color: var(--accent); text-decoration: none; font-weight: bold; }
-        .map-container { max-width: 800px; margin: 30px auto; padding: 10px; background: #111; border-radius: 12px; border: 1px solid var(--border); }
-        img { width: 100%; border-radius: 8px; display: block; }
-        h1 { color: var(--accent); margin-top: 20px; }
+        
+        .map-container { 
+            max-width: 900px; 
+            margin: 30px auto; 
+            padding: 15px; 
+            background: #111; 
+            border-radius: 16px; 
+            border: 1px solid var(--border);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+        }
+        
+        /* Ajuste para a imagem carregar corretamente */
+        img { 
+            width: 100%; 
+            height: auto;
+            border-radius: 10px; 
+            display: block; 
+        }
+        
+        h1 { color: var(--accent); margin-top: 30px; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
     <nav>
         <div style="font-weight:900">BR<span style="color:var(--accent)">COMPETITIVE</span></div>
-        <a href="index.html" class="back-btn">← Voltar</a>
+        <a href="index.html" class="back-btn">← Voltar para Início</a>
     </nav>
 
-    <h1>Drop Spots - FNCS</h1>
+    <h1>Mapa de Drop Spots</h1>
+    <p style="color: #888;">FNCS Grand Finals - Servidor Brasileiro</p>
+
     <div class="map-container">
-        <img src="https://pbs.twimg.com/media/GH8TrpIW4AA8Y8L?format=jpg&name=large" alt="Mapa de Drops">
+        <img src="https://pbs.twimg.com/media/GH8TrpIW4AA8Y8L?format=jpg&name=large" alt="Mapa de Drops FNCS">
     </div>
+
+    <p style="color: #444; margin-bottom: 40px;">Atualizado em tempo real</p>
 </body>
 </html>
