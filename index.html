@@ -8,7 +8,7 @@
         :root {
             --bg: #0d0d0d;
             --card-bg: #161616;
-            --accent: #00ff41; /* VERDE APARELHO / NEON */
+            --accent: #00ff41; 
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
             --border: #262626;
@@ -23,7 +23,6 @@
             line-height: 1.5;
         }
 
-        /* Navbar */
         nav {
             padding: 20px 5%;
             display: flex;
@@ -46,7 +45,6 @@
             padding: 0 20px;
         }
 
-        /* Grid de Campeonatos */
         .tourney-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -72,7 +70,6 @@
         .tourney-title { font-size: 1.4rem; margin: 10px 0; font-weight: 700; }
         .tourney-info { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; }
 
-        /* Badge AO VIVO */
         .status-badge {
             display: flex;
             align-items: center;
@@ -108,11 +105,6 @@
             font-weight: 900;
             font-size: 0.9rem;
             margin-top: 15px;
-            transition: opacity 0.2s;
-        }
-
-        .view-button:hover {
-            opacity: 0.9;
         }
 
         h2 { font-size: 1.8rem; margin-bottom: 10px; }
@@ -134,9 +126,9 @@
             <div class="tourney-card">
                 <span class="tourney-type">Major 2</span>
                 <div class="tourney-title">FNCS Grand Finals</div>
-                <div class="tourney-info">O maior palco do Brasil. Acompanhe os melhores pro-players.</div>
+                <div class="tourney-info">Acompanha os melhores pro-players do Brasil em direto.</div>
                 <div class="status-badge"><div class="dot"></div> AO VIVO AGORA</div>
-                <a href="#" class="view-button">VER LEADERBOARD</a>
+                <a href="leaderboard.html" class="view-button">VER LEADERBOARD</a>
             </div>
 
             <div class="tourney-card">
