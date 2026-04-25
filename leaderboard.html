@@ -16,7 +16,6 @@
         }
         body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
         
-        /* NAVBAR */
         nav { 
             background: #000; padding: 15px 5%; border-bottom: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
@@ -28,7 +27,6 @@
 
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 
-        /* HEADER DO EVENTO ATUAL */
         .event-header {
             background: var(--card); border: 1px solid var(--border); border-radius: 12px;
             padding: 25px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;
@@ -38,7 +36,6 @@
         .stat-label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; display: block; }
         .stat-value { font-size: 1.1rem; font-weight: 800; color: var(--accent); }
 
-        /* SISTEMA DE ABAS */
         .tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 10px; overflow-x: auto; scrollbar-width: none; }
         .tab-btn { 
             background: none; border: none; color: var(--text-dim); cursor: pointer; 
@@ -46,7 +43,6 @@
         }
         .tab-btn.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        /* TABELAS */
         .tab-content { display: none; animation: fadeIn 0.3s ease; }
         .tab-content.active { display: block; }
         
@@ -57,8 +53,8 @@
         .duo-name { font-weight: 800; text-transform: uppercase; display: block; }
         .duo-status { font-size: 0.65rem; color: var(--text-dim); }
         .pts-cell { text-align: right; font-weight: 900; font-family: monospace; font-size: 1.1rem; }
+        .badge-winner { background: var(--gold); color: black; padding: 2px 6px; border-radius: 4px; font-size: 0.6rem; margin-left: 10px; }
 
-        /* FORMULÁRIO DE PREDICT */
         .predict-card { background: var(--card); border: 1px solid var(--border); padding: 30px; border-radius: 12px; max-width: 600px; margin: 0 auto; }
         .predict-input { width: 100%; padding: 12px; background: #000; border: 1px solid var(--border); color: white; border-radius: 6px; margin-top: 5px; box-sizing: border-box; }
         .predict-btn { width: 100%; background: var(--accent); color: black; border: none; padding: 15px; border-radius: 6px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
@@ -73,7 +69,7 @@
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="mapa.html">Maps</a>
-        <a href="#">Statistics</a>
+        <a href="leaderboard.html">Statistics</a>
     </div>
 </nav>
 
@@ -102,12 +98,12 @@
         <table>
             <thead><tr><th class="rank-cell">#</th><th>DUPLA / QUALIFICAÇÃO</th><th class="pts-cell">PTS</th></tr></thead>
             <tbody>
-                <tr><td class="rank-cell">1</td><td><span class="duo-name">King & Phzin</span><span class="duo-status">Qualified: Heat A</span></td><td class="pts-cell">0</td></tr>
+                <tr><td class="rank-cell">1</td><td><span class="duo-name">Phzin & Edson</span><span class="duo-status">Qualified: Heat A</span></td><td class="pts-cell">0</td></tr>
                 <tr><td class="rank-cell">2</td><td><span class="duo-name">Persa & Diguera</span><span class="duo-status">Qualified: Heat B</span></td><td class="pts-cell">0</td></tr>
                 <tr><td class="rank-cell">3</td><td><span class="duo-name">Vadeyy & Sirence</span><span class="duo-status">Qualified: Heat A</span></td><td class="pts-cell">0</td></tr>
-                <tr><td class="rank-cell">4</td><td><span class="duo-name">Seawave & Felpsz</span><span class="duo-status">Qualified: Heat A</span></td><td class="pts-cell">0</td></tr>
-                <tr><td class="rank-cell">5</td><td><span class="duo-name">Fazer & K1ng</span><span class="duo-status">Qualified: Heat A</span></td><td class="pts-cell">0</td></tr>
-                </tbody>
+                <tr><td class="rank-cell">4</td><td><span class="duo-name">Edroad & Cadu</span><span class="duo-status">Qualified: Heat B</span></td><td class="pts-cell">0</td></tr>
+                <tr><td class="rank-cell">5</td><td><span class="duo-name">Seawave & Felpsz</span><span class="duo-status">Qualified: Heat A</span></td><td class="pts-cell">0</td></tr>
+            </tbody>
         </table>
     </div>
 
@@ -115,16 +111,29 @@
         <table>
             <thead><tr><th class="rank-cell">#</th><th>DUPLA</th><th class="pts-cell">PTS</th></tr></thead>
             <tbody>
-                <tr><td class="rank-cell">1</td><td><span class="duo-name">King & Phzin</span></td><td class="pts-cell">280</td></tr>
+                <tr><td class="rank-cell">1</td><td><span class="duo-name">Phzin & Edson <span class="badge-winner">TOP 1</span></span></td><td class="pts-cell">682</td></tr>
+                <tr><td class="rank-cell">2</td><td><span class="duo-name">Vadeyy & Sirence</span></td><td class="pts-cell">591</td></tr>
+                <tr><td class="rank-cell">3</td><td><span class="duo-name">Seawave & Felpsz</span></td><td class="pts-cell">543</td></tr>
+                <tr><td class="rank-cell">4</td><td><span class="duo-name">Fazer & K1ng</span></td><td class="pts-cell">510</td></tr>
+                <tr><td class="rank-cell">5</td><td><span class="duo-name">Frostyache & Matika</span></td><td class="pts-cell">485</td></tr>
             </tbody>
         </table>
     </div>
 
     <div id="heatb" class="tab-content">
         <table>
-            <thead><tr><th class="rank-cell">#</th><th>DUPLA</th><th class="pts-cell">PTS</th></tr></thead>
+            <thead><tr><th class="rank-cell">#</th><th>DUPLA (HEAT B FINAL)</th><th class="pts-cell">PTS</th></tr></thead>
             <tbody>
-                <tr><td class="rank-cell">1</td><td><span class="duo-name">Persa & Diguera</span></td><td class="pts-cell">295</td></tr>
+                <tr><td class="rank-cell">1</td><td><span class="duo-name">Persa & Diguera <span class="badge-winner">TOP 1</span></span></td><td class="pts-cell">710</td></tr>
+                <tr><td class="rank-cell">2</td><td><span class="duo-name">Edroad & Cadu</span></td><td class="pts-cell">605</td></tr>
+                <tr><td class="rank-cell">3</td><td><span class="duo-name">Rodrygod & Keicox</span></td><td class="pts-cell">582</td></tr>
+                <tr><td class="rank-cell">4</td><td><span class="duo-name">Kitoz & Hazzense</span></td><td class="pts-cell">520</td></tr>
+                <tr><td class="rank-cell">5</td><td><span class="duo-name">Kayky & Kchorro</span></td><td class="pts-cell">495</td></tr>
+                <tr><td class="rank-cell">6</td><td><span class="duo-name">Nahux & Gonzalito</span></td><td class="pts-cell">470</td></tr>
+                <tr><td class="rank-cell">7</td><td><span class="duo-name">Loud Diguera & Mack</span></td><td class="pts-cell">455</td></tr>
+                <tr><td class="rank-cell">8</td><td><span class="duo-name">Lucx & Mxsty</span></td><td class="pts-cell">432</td></tr>
+                <tr><td class="rank-cell">9</td><td><span class="duo-name">Sanku & Fishy</span></td><td class="pts-cell">410</td></tr>
+                <tr><td class="rank-cell">10</td><td><span class="duo-name">Parkyn & Clown</span></td><td class="pts-cell">385</td></tr>
             </tbody>
         </table>
     </div>
@@ -132,17 +141,17 @@
     <div id="predict" class="tab-content">
         <div class="predict-card">
             <h2 style="color: var(--accent); margin: 0 0 10px 0;">MEU PREDICT</h2>
-            <p style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 20px;">Quem ganha a Grand Finals hoje?</p>
+            <p style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 20px;">Quem leva a taça hoje?</p>
             <form>
                 <div style="margin-bottom: 15px;">
                     <label class="stat-label" style="color: var(--accent);">CAMPEÃO (TOP 1)</label>
-                    <input type="text" class="predict-input" placeholder="Ex: King & Phzin">
+                    <input type="text" class="predict-input" placeholder="Ex: Persa & Diguera">
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div><label class="stat-label">TOP 2</label><input type="text" class="predict-input"></div>
                     <div><label class="stat-label">TOP 3</label><input type="text" class="predict-input"></div>
                 </div>
-                <button type="button" class="predict-btn" onclick="window.print()">Salvar / Printar Predict</button>
+                <button type="button" class="predict-btn" onclick="window.print()">Salvar Predict</button>
             </form>
         </div>
     </div>
