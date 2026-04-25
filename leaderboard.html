@@ -3,165 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard Pro | BR Competitive</title>
+    <title>Estatísticas FNCS | BR Competitive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg: #0d0d0d; 
+            --bg: #0f0f0f; 
+            --card: #1a1a1a; 
             --accent: #00ff41; 
-            --card-bg: #161616; 
-            --border: #262626; 
-            --gold: #ffd700;
-            --text-dim: #888;
+            --border: #2d2d2d;
+            --text-dim: #a0a0a0;
         }
-        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; }
         
-        /* NAVBAR */
-        nav { padding: 15px 5%; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;}
-        .back-btn { color: var(--accent); text-decoration: none; font-weight: bold; font-size: 0.8rem; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 4px; transition: 0.3s; }
-        .back-btn:hover { background: var(--accent); color: black; }
-
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
-
-        /* HEADER DO CAMPEONATO (ESTILO TRACKER) */
-        .event-header {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+        /* NAVBAR ESTILO TRACKER */
+        nav { 
+            background: #000; padding: 15px 5%; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
         }
-        .event-info h1 { margin: 5px 0; font-size: 2rem; font-weight: 900; }
-        .event-stats { display: flex; gap: 30px; margin-top: 15px; }
-        .stat { display: flex; flex-direction: column; }
-        .stat-label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; font-weight: bold; }
-        .stat-value { font-size: 1.1rem; font-weight: 800; color: var(--accent); }
+        .nav-links { display: flex; gap: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: white; }
 
-        /* SISTEMA DE ABAS */
-        .tabs-container { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
-        .tab-btn {
-            background: #1a1a1a; border: 1px solid var(--border); color: var(--text-dim);
-            padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: 800;
-            font-size: 0.7rem; text-transform: uppercase; white-space: nowrap; transition: 0.2s;
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        /* CARDS DE HISTÓRICO (Igual à imagem) */
+        .history-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 20px; margin-bottom: 50px; 
         }
-        .tab-btn.active { background: var(--accent); color: black; border-color: var(--accent); }
+        .season-card { 
+            background: var(--card); border-radius: 12px; border: 1px solid var(--border);
+            overflow: hidden; transition: 0.3s;
+        }
+        .season-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .card-banner { height: 120px; background: linear-gradient(45deg, #111, #222); position: relative; padding: 20px; }
+        .card-banner img { width: 60px; opacity: 0.8; }
+        .badge-current { 
+            position: absolute; top: 15px; right: 15px; background: #222; 
+            color: var(--accent); padding: 4px 8px; border-radius: 4px; font-size: 0.6rem; 
+            font-weight: 900; border: 1px solid var(--accent);
+        }
+        .card-body { padding: 20px; text-align: center; }
+        .card-body h3 { margin: 0; font-size: 1.2rem; font-weight: 900; }
+        .card-date { font-size: 0.75rem; color: var(--text-dim); margin: 5px 0 20px; }
+        
+        .card-stats { 
+            display: flex; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            margin: 0 -20px;
+        }
+        .stat-box { flex: 1; padding: 15px; border-right: 1px solid var(--border); }
+        .stat-box:last-child { border-right: none; }
+        .stat-label { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; display: block; }
+        .stat-val { font-size: 1rem; font-weight: 900; color: white; }
 
-        /* TABELA DE RESULTADOS */
-        .tab-content { display: none; animation: fadeIn 0.3s ease; }
-        .tab-content.active { display: block; }
-        
-        table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-        th { background: #222; padding: 15px; text-align: left; color: var(--accent); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
-        td { padding: 14px 15px; border-bottom: 1px solid var(--border); }
-        
-        .rank-cell { width: 40px; font-weight: 900; color: var(--accent); font-size: 1.1rem; }
-        .duo-cell { display: flex; flex-direction: column; }
-        .duo-name { font-weight: 800; font-size: 0.95rem; text-transform: uppercase; }
-        .duo-status { font-size: 0.65rem; color: var(--text-dim); margin-top: 3px; }
-        
-        .win-badge { background: var(--gold); color: black; padding: 2px 5px; border-radius: 3px; font-weight: 900; font-size: 0.6rem; margin-right: 5px; }
-        
-        .pts-cell { text-align: right; font-weight: 900; font-family: 'Courier New', monospace; font-size: 1.1rem; }
-        
-        tr:hover { background: rgba(255,255,255,0.03); }
+        /* TABELA DE PLAYERS */
+        .winners-list { list-style: none; padding: 15px 0 0; margin: 0; text-align: left; }
+        .winner-row { display: flex; justify-content: space-between; font-size: 0.75rem; padding: 5px 0; }
+        .winner-name { font-weight: bold; color: white; }
+        .winner-prize { color: var(--text-dim); }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* ABAS DE NAVEGAÇÃO */
+        .tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        .tab-btn { 
+            background: none; border: none; color: var(--text-dim); cursor: pointer; 
+            font-weight: 900; font-size: 0.75rem; text-transform: uppercase; padding: 10px 20px;
+        }
+        .tab-btn.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div style="font-weight:900; font-size: 1.2rem;">BR<span style="color:var(--accent)">COMPETITIVE</span></div>
-        <a href="index.html" class="back-btn">VOLTAR AO HUB</a>
-    </nav>
-    
-    <div class="container">
-        <div class="event-header">
-            <div class="event-info">
-                <span style="color: var(--accent); font-weight: 900; font-size: 0.75rem; text-transform: uppercase;">Fortnite Champion Series</span>
-                <h1>GRAND FINALS</h1>
-                <div class="event-stats">
-                    <div class="stat"><span class="stat-label">Prize Pool</span><span class="stat-value">$592,450</span></div>
-                    <div class="stat"><span class="stat-label">Region</span><span class="stat-value">Brazil</span></div>
-                    <div class="stat"><span class="stat-label">Teams</span><span class="stat-value">50</span></div>
+<nav>
+    <div style="font-weight:900; font-size: 1.2rem; color: var(--accent);">BR COMPETITIVE</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="mapa.html">Maps</a>
+        <a href="#">Statistics</a>
+        <a href="#">Heats</a>
+        <a href="#">Grands</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="tabs">
+        <button class="tab-btn active">All Events</button>
+        <button class="tab-btn">LAN Events</button>
+        <button class="tab-btn">Stats</button>
+    </div>
+
+    <div class="history-grid">
+        
+        <div class="season-card">
+            <div class="card-banner">
+                <span class="badge-current">● CURRENT</span>
+                <img src="https://logodownload.org/wp-content/uploads/2018/07/fortnite-logo-3.png" alt="FNCS">
+            </div>
+            <div class="card-body">
+                <h3>CH7 S2</h3>
+                <div class="card-date">25-04-2026</div>
+                <div class="card-stats">
+                    <div class="stat-box"><span class="stat-label">Prize Pool</span><span class="stat-val">$592K</span></div>
+                    <div class="stat-box"><span class="stat-label">Teams</span><span class="stat-val">50</span></div>
                 </div>
-            </div>
-            <div style="text-align: right;">
-                <div style="background: rgba(0,255,65,0.1); color: var(--accent); padding: 8px 15px; border-radius: 8px; font-weight: 900; font-size: 0.7rem; border: 1px solid var(--accent);">AO VIVO</div>
+                <div style="padding-top: 20px; color: var(--text-dim); font-size: 0.8rem;">No data yet</div>
             </div>
         </div>
 
-        <div class="tabs-container">
-            <button class="tab-btn active" onclick="openTab(event, 'finals')">Grand Finals</button>
-            <button class="tab-btn" onclick="openTab(event, 'heata')">Heat A</button>
-            <button class="tab-btn" onclick="openTab(event, 'heatb')">Heat B</button>
-            <button class="tab-btn" onclick="openTab(event, 'lastchance')">Last Chance</button>
-            <button class="tab-btn" onclick="openTab(event, 'major1')">Major 1</button>
+        <div class="season-card">
+            <div class="card-banner">
+                <img src="https://logodownload.org/wp-content/uploads/2018/07/fortnite-logo-3.png" alt="FNCS">
+            </div>
+            <div class="card-body">
+                <h3>GLOBAL CHAMPIONSHIP</h3>
+                <div class="card-date">07-09-2025</div>
+                <div class="card-stats">
+                    <div class="stat-box"><span class="stat-label">Prize Pool</span><span class="stat-val">$2M</span></div>
+                    <div class="stat-box"><span class="stat-label">Location</span><span class="stat-val">Lyon</span></div>
+                </div>
+                <ul class="winners-list">
+                    <li class="winner-row">
+                        <span class="winner-name">1. Swizzy Queasy Merstach</span>
+                        <span class="winner-prize">$450K</span>
+                    </li>
+                    <li class="winner-row">
+                        <span class="winner-name">2. Vanyak3k Pixie Mariuscow</span>
+                        <span class="winner-prize">$300K</span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div id="finals" class="tab-content active">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="rank-cell">#</th>
-                        <th>DUPLA / STATUS</th>
-                        <th style="text-align: center;">VITS</th>
-                        <th class="pts-cell">PTS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="rank-cell">1</td>
-                        <td class="duo-cell">
-                            <span class="duo-name">King & Phzin</span>
-                            <span class="duo-status">Qualified: Heat A (Rank 1)</span>
-                        </td>
-                        <td style="text-align: center;">0</td>
-                        <td class="pts-cell">0</td>
-                    </tr>
-                    <tr><td class="rank-cell">2</td><td class="duo-cell"><span class="duo-name">Persa & Diguera</span><span class="duo-status">Qualified: Heat B (Rank 1)</span></td><td style="text-align: center;">0</td><td class="pts-cell">0</td></tr>
-                    </tbody>
-            </table>
-        </div>
+    </div>
+</div>
 
-        <div id="heata" class="tab-content">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="rank-cell">#</th>
-                        <th>DUPLA</th>
-                        <th style="text-align: center;">VITS</th>
-                        <th class="pts-cell">PTS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="rank-cell">1</td>
-                        <td class="duo-cell">
-                            <span class="duo-name">King & Phzin</span>
-                            <span class="duo-status"><span class="win-badge">TOP 1</span> HEAT WINNER</span>
-                        </td>
-                        <td style="text-align: center;">2</td>
-                        <td class="pts-cell">280</td>
-                    </tr>
-                    </tbody>
-            </table>
-        </div>
-
-        </div>
-
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.remove("active"); }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
 </body>
 </html>
